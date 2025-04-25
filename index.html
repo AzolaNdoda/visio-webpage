@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    
+    </style>
+</head>
+<body>
+
+<div class="container">
+<header class="header">
+    <div class="logo">
+        <img src="https://visiofund.co.za/wp-content/themes/visio/images/logo-black.svg" alt="Visio Logo">
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <nav class="menu" id="fullscreenMenu">
+
+        <div class="logo">
+            <img src="Assets/logo-white.png" alt="Visio Logo">
+        </div>
+
+        <a href="#">About</a>
+        <a href="#">Funds</a>
+        <a href="#">Governance</a>
+        <a href="#">Contact Us</a>
+
+        <div class="animate-logo"></div>
+    </nav>
+</header>
+<section class="main-carousel">
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <div class="inner-carousel">
+                <ul>
+                    <li class="carousel-image">
+                        <h3>Looking beyond the ordinary for 21 years</h3>
+                        <img src="Assets/The young girl.jpg" alt="Team looking beyond the ordinary">
+                    </li>
+                    <li class="carousel-image">
+                        <h3>We leave no stone unturned</h3>
+                        <img src="https://visiofund.co.za/wp-content/uploads/2021/10/1.png" alt="Detailed strategy image">
+                    </li>
+                    <li class="carousel-image">
+                        <h3 class="before">Look Beyond the Ordinary</h3>
+                        <img src="https://visiofund.co.za/wp-content/uploads/2021/10/2-e1733732415237.png" alt="Motivational message">
+                    </li>
+                </ul>
+                <div class="paging">
+                    <span class="active" onclick="nextSlide(0)"></span>
+                    <span onclick="nextSlide(1)"></span>
+                    <span onclick="nextSlide(2)"></span>
+                </div>
+                <div class="next-slide" onclick="nextSlide((currentIndex + 1) % totalSlides)"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="after"></div>     
+
+      <section class="home-content">
+        <div class="inner-page">
+            <p>
+                Visio is an investment management firm initially founded by Patrice Moyal in 2003. The nimble, highly focused and dynamic team manage assets across listed strategies for a diversified client base that includes some of the world’s largest and most sophisticated investors.
+            </p>
+            <div class="animate-logo"></div>
+        </div>
+    </section>
+
+    <section class="main-links">
+        <div>
+            <span>The Visio<br />Difference</span>
+          </div>
+        <div>
+            <span>Meet The<br />Visio Team</span>
+            </div>
+        <div>
+            <span>Our Funds<br />And Investments</span>
+            </div>
+      </section>
+
+
+      <section class="categories">
+        <button>Hedge Funds</button>
+        <button>Unit Trusts</button>
+        <button>Segregated Mandates</button>
+        <button>Africa Funds</button>
+        <button>Fund Performance</button>
+        <button>Risk Management</button>
+      </section>
+
+<script>
+
+// Hamburger toggle
+const toggleButton = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('fullscreenMenu');
+
+    // Carousel functionality
+    let currentIndex = 0;
+    const carousel = document.querySelector('.inner-carousel ul');
+    const slides = document.querySelectorAll('.carousel-image');
+    const dots = document.querySelectorAll('.paging span');
+    const totalSlides = slides.length;
+
+    function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentIndex].classList.add('active');
+
+    slides.forEach(slide => {
+        const h3 = slide.querySelector('h3');
+        h3.classList.remove('animated');
+    });
+
+    const currentH3 = slides[currentIndex].querySelector('h3');
+    void currentH3.offsetWidth; // Force reflow
+    currentH3.classList.add('animated');
+}
+
+    function nextSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+
+    // Menu toggling
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".menu");
+
+    toggle.addEventListener("click", () => {
+        menu.classList.toggle("show");
+    });
+});
+
+  // Close Menu on X click
+    fullscreenMenu.addEventListener('click', (e) => {
+      if (e.target === fullscreenMenu || e.target.textContent === '×') {
+        fullscreenMenu.classList.remove('show');
+      }
+    });
+
+// Trigger re-animation for h3
+slides.forEach(slide => {
+        const h3 = slide.querySelector('h3');
+        h3.style.animation = 'none';
+        void h3.offsetWidth; // Force reflow
+        h3.style.animation = '';
+        h3.classList.remove('animated');
+      });
+
+      const activeSlide = slides[index];
+      const h3 = activeSlide.querySelector('h3');
+      h3.classList.add('animated');
+
+    // Update dots
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[index]) dots[index].classList.add('active');
+    
+    const nextArrow = document.querySelector('.next-slide');
+    nextArrow.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      goToSlide(currentSlide);
+    });
+
+    // Initialize first slide
+    updateCarousel(); 
+
+</script>
+</div>
+</body>
+</html>
