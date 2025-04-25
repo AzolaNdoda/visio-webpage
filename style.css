@@ -222,30 +222,6 @@ body {
     animation: slideInText 0.6s ease forwards;
   }
 
-  /* After Pseudo Element */
-
- .after {
-    position: fixed;
-    top: 18%;
-    right: 13.3%;
-    width: 30px;
-    height: 20px;
-    background: black;
-  }
-  
-
-.after {
-    display: none;
-  }
-
-  @media screen and (min-width: 1024px) {
-    .after {
-      display: block;
-      width: 100px;
-      background: black;
-      height: 20vh;
-    }
-  }
  
   /* Paging Dots */
   .paging {
